@@ -27,6 +27,9 @@ public class Picture
     private Triangle roof;
     private Circle sun;
     private MyRectangle river;
+    private MyRectangle ttrunk;
+    private Triangle tleaf;
+    private Triangle tleaf2;
 
     /**
      * Constructor for objects of class Picture
@@ -34,6 +37,55 @@ public class Picture
     public Picture()
     {
         // nothing to do... instance variables are automatically set to null
+    }
+
+    public void windows(int x, int y) {
+        windowr = new Square();
+        windowr.changeColor("red");
+        windowr.moveHorizontal(x + 650);
+        windowr.moveVertical(y + 200);
+        windowr.makeVisible();
+
+        windowg = new Square();
+        windowg.changeColor("green");
+        windowg.moveHorizontal(x + 680);
+        windowg.moveVertical(y + 200);
+        windowg.makeVisible();
+
+        windowb = new Square();
+        windowb.changeColor("blue");
+        windowb.moveHorizontal(x + 650);
+        windowb.moveVertical(y + 230);
+        windowb.makeVisible();
+
+        windowy = new Square();
+        windowy.changeColor("yellow");
+        windowy.moveHorizontal(x + 680);
+        windowy.moveVertical(y + 230);
+        windowy.makeVisible();
+    }
+
+    public void tree(int x, int y) {
+        ttrunk = new MyRectangle();
+        ttrunk.changeColor("trunk");
+        ttrunk.moveHorizontal(x - 45);
+        ttrunk.moveVertical(y - 20);
+        ttrunk.changeSize(20, 60);
+        ttrunk.makeVisible();
+
+        tleaf = new Triangle();
+        tleaf.changeColor("leaf");
+        tleaf.moveHorizontal(x - 25);
+        tleaf.moveVertical(y - 50);
+        tleaf.changeSize(70, 70);
+        tleaf.makeVisible();
+
+        tleaf2 = new Triangle();
+        tleaf2.changeColor("leaf");
+        tleaf2.moveHorizontal(x - 25);
+        tleaf2.moveVertical(y - 80);
+        tleaf2.changeSize(70, 70);
+        tleaf2.makeVisible();
     }
 
     /**
@@ -45,88 +97,57 @@ public class Picture
         terre.moveVertical(500);
         terre.moveHorizontal(-100);
         terre.changeSize(1920, 300);
-        terre.changeColor("white");
+        terre.changeColor("grass");
         terre.makeVisible();
         
         river = new MyRectangle();
         river.moveVertical(650);
         river.moveHorizontal(-100);
         river.changeSize(1920, 25);
-        river.changeColor("blue");
+        river.changeColor("water");
         river.makeVisible();
         
         montagne = new Triangle();
         montagne.moveVertical(50);
         montagne.moveHorizontal(300);
         montagne.changeSize(500, 800);
-        montagne.changeColor("gray");
+        montagne.changeColor("mountain");
         montagne.makeVisible();
 
         montagne2 = new Triangle();
         montagne2.moveVertical(50);
         montagne2.moveHorizontal(1200);
         montagne2.changeSize(500, 800);
-        montagne2.changeColor("gray");
+        montagne2.changeColor("mountain");
         montagne2.makeVisible();
 
         wall = new MyRectangle();
         wall.moveVertical(150);
         wall.moveHorizontal(600);
         wall.changeSize(300, 400);
-        wall.changeColor("green");
-        wall.makeVisible();
-
-        wall = new MyRectangle();
-        wall.moveVertical(150);
-        wall.moveHorizontal(600);
-        wall.changeSize(300, 400);
-        wall.changeColor("green");
+        wall.changeColor("brick");
         wall.makeVisible();
 
         garage = new MyRectangle();
         garage.moveVertical(350);
         garage.moveHorizontal(250);
         garage.changeSize(350, 200);
-        garage.changeColor("red");
+        garage.changeColor("gray");
         garage.makeVisible();   
 
         housedoor = new MyRectangle();
         housedoor.moveVertical(450);
         housedoor.moveHorizontal(725);
         housedoor.changeSize(50, 100);
-        housedoor.changeColor("brown");
+        housedoor.changeColor("wood");
         housedoor.makeVisible();
 
         garagedoor = new MyRectangle();
         garagedoor.moveVertical(400);
         garagedoor.moveHorizontal(275);
         garagedoor.changeSize(300, 150);
-        garagedoor.changeColor("brown");
+        garagedoor.changeColor("wood");
         garagedoor.makeVisible(); 
-
-        windowr = new Square();
-        windowr.changeColor("red");
-        windowr.moveHorizontal(650);
-        windowr.moveVertical(200);
-        windowr.makeVisible();
-
-        windowg = new Square();
-        windowg.changeColor("black");
-        windowg.moveHorizontal(700);
-        windowg.moveVertical(200);
-        windowg.makeVisible();
-
-        windowb = new Square();
-        windowb.changeColor("blue");
-        windowb.moveHorizontal(650);
-        windowb.moveVertical(230);
-        windowb.makeVisible();
-
-        windowy = new Square();
-        windowy.changeColor("yellow");
-        windowy.moveHorizontal(680);
-        windowy.moveVertical(230);
-        windowy.makeVisible();
 
         roof = new Triangle();
         roof.changeSize(100, 400);
@@ -141,6 +162,19 @@ public class Picture
         sun.moveVertical(-10);
         sun.changeSize(60);
         sun.makeVisible();
+
+
+
+        this.windows(0, 0);
+        this.windows(150, 0);
+        this.windows(0, 100);
+        this.windows(150, 100);
+        this.tree(1300, 550);
+        this.tree(1150, 500);
+        this.tree(1000, 600);
+        this.tree(200, 600);
+        this.tree(100, 500);
+
     }
 
     /**

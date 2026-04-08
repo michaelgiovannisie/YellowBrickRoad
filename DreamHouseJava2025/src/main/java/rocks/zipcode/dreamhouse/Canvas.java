@@ -30,7 +30,7 @@ public class Canvas
     {
         if(canvasSingleton == null) {
             canvasSingleton = new Canvas("BlueJ Shapes Demo", 1920, 1080, 
-                    Color.blue);
+                    new Color(173, 216, 230));
         }
         canvasSingleton.setVisible(true);
         return canvasSingleton;
@@ -137,6 +137,28 @@ public class Canvas
             graphic.setColor(Color.magenta);
         else if(colorString.equals("white"))
             graphic.setColor(Color.white);
+        else if(colorString.equals("lightblue"))
+            graphic.setColor(new Color(173, 216, 230));
+        else if(colorString.equals("brown"))
+            graphic.setColor(new Color(84,59,14));
+        else if(colorString.equals("water"))
+            graphic.setColor(new Color(15,94,156));
+         else if(colorString.equals("mountain"))
+            graphic.setColor(new Color(60, 37, 21));
+         else if(colorString.equals("door"))
+            graphic.setColor(new Color(196,194,205));
+         else if(colorString.equals("brick"))
+            graphic.setColor(new Color(188, 74, 60));
+        else if(colorString.equals("grass"))
+            graphic.setColor(new Color(124, 252, 0));
+        else if(colorString.equals("wood"))
+             graphic.setColor(new Color(139, 69, 19));
+        else if(colorString.equals("gray"))
+             graphic.setColor(new Color(54, 69, 79));
+        else if(colorString.equals("trunk"))
+             graphic.setColor(new Color(165, 99, 60));
+        else if(colorString.equals("leaf"))
+             graphic.setColor(new Color(119,163,122));
         else
             graphic.setColor(Color.black);
     }

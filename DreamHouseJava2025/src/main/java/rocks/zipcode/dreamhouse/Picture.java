@@ -111,7 +111,7 @@ public class Picture
         windowr.makeVisible();
 
         windowg = new Square();
-        windowg.changeColor("green");
+        windowg.changeColor("black");
         windowg.moveHorizontal(700);
         windowg.moveVertical(200);
         windowg.makeVisible();
@@ -124,8 +124,8 @@ public class Picture
 
         windowy = new Square();
         windowy.changeColor("yellow");
-        windowy.moveHorizontal(800);
-        windowy.moveVertical(200);
+        windowy.moveHorizontal(680);
+        windowy.moveVertical(230);
         windowy.makeVisible();
 
         roof = new Triangle();

@@ -25,6 +25,8 @@ public class Picture
     private Square windowb;
     private Square windowy;
     private Triangle roof;
+    private Triangle mountaintip1;
+    private Triangle mountaintip2;
     private Circle sun;
     private MyRectangle river;
     private MyRectangle ttrunk;
@@ -120,6 +122,20 @@ public class Picture
         montagne2.changeSize(500, 800);
         montagne2.changeColor("mountain");
         montagne2.makeVisible();
+
+        mountaintip1 = new Triangle();
+        mountaintip1.moveVertical(50);
+        mountaintip1.moveHorizontal(300);
+        mountaintip1.changeSize(50, 80);
+        mountaintip1.changeColor("white");
+        mountaintip1.makeVisible();
+
+        mountaintip2 = new Triangle();
+        mountaintip2.moveVertical(50);
+        mountaintip2.moveHorizontal(1200);
+        mountaintip2.changeSize(50, 80);
+        mountaintip2.changeColor("white");
+        mountaintip2.makeVisible();
 
         wall = new MyRectangle();
         wall.moveVertical(150);

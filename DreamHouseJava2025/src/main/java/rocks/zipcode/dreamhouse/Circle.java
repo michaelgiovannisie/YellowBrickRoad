@@ -1,7 +1,10 @@
 package rocks.zipcode.dreamhouse;
-import java.awt.*;
-import java.awt.geom.*;
-
+import java.awt.Color;
+import java.awt.Paint;
+import java.awt.RadialGradientPaint;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 /**
  * A circle that can be manipulated and that draws itself on a canvas.
  * 
@@ -16,6 +19,7 @@ public class Circle
     private int yPosition;
     private String color;
     private boolean isVisible;
+    private Paint paint;
 
     /**
      * Create a new circle at default position with default color.
@@ -167,18 +171,51 @@ public class Circle
         draw();
     }
 
+    public void changePaint(Paint newPaint)
+    {
+    paint = newPaint;
+    draw();
+    }
     /*
      * Draw the circle with current specifications on screen.
      */
     private void draw()
-    {
-        if(isVisible) {
-            Canvas canvas = Canvas.getCanvas();
-            canvas.draw(this, color, new Ellipse2D.Double(xPosition, yPosition, 
-                    diameter, diameter));
-            canvas.wait(10);
+{
+    if(isVisible) {
+        Canvas canvas = Canvas.getCanvas();
+
+        Shape circle = new Ellipse2D.Double(xPosition, yPosition, diameter, diameter);
+
+        if(paint != null) {
+            canvas.draw(this, paint, circle);
+        } else {
+            canvas.draw(this, color, circle);
         }
+
+        canvas.wait(10);
     }
+}
+
+public void setRadialSunGradient()
+{
+    Point2D center = new Point2D.Float(
+        xPosition + diameter / 2f,
+        yPosition + diameter / 2f
+    );
+
+    float radius = diameter / 2f;
+
+    float[] dist = {0.0f, 0.6f, 0.85f, 1.0f};
+    Color[] colors = {
+        new Color(255, 255, 220), // bright center
+        Color.YELLOW,
+        Color.ORANGE,
+        new Color(255, 80, 0)     // red edge
+    };
+
+    paint = new RadialGradientPaint(center, radius, dist, colors);
+    draw();
+}
 
     /*
      * Erase the circle on screen.

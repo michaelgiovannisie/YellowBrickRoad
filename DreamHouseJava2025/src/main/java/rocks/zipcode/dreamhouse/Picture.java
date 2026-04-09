@@ -1,4 +1,6 @@
 package rocks.zipcode.dreamhouse;
+import java.awt.Color;
+import java.awt.LinearGradientPaint;
 
 /**
  * This class represents a simple picture. You can draw the picture using
@@ -113,7 +115,18 @@ public class Picture
         montagne.moveVertical(50);
         montagne.moveHorizontal(300);
         montagne.changeSize(500, 800);
-        montagne.changeColor("mountain");
+        LinearGradientPaint gradient = new LinearGradientPaint(
+        300, 50,           
+        300, 850,          
+        new float[] {0.0f, 0.1f, 0.4f, 1.0f},  
+        new Color[] {
+        Color.WHITE,                    
+        Color.WHITE,
+        Color.GRAY,                   
+        new Color(60, 37, 21)           
+    }
+);
+        montagne.changePaint(gradient);
         montagne.makeVisible();
 
         montagne2 = new Triangle();
@@ -173,12 +186,11 @@ public class Picture
         roof.makeVisible();
 
         sun = new Circle();
-        sun.changeColor("yellow");
         sun.moveHorizontal(980);
         sun.moveVertical(-10);
         sun.changeSize(60);
         sun.makeVisible();
-
+        sun.setRadialSunGradient();
 
 
         this.windows(0, 0);
@@ -202,7 +214,6 @@ public class Picture
         {
             wall.changeColor("black");
             garage.changeColor("black");
-            window.changeColor("white");
             roof.changeColor("black");
             sun.changeColor("black");
         }
@@ -217,7 +228,6 @@ public class Picture
         {
             wall.changeColor("red");
             garage.changeColor("red");
-            window.changeColor("black");
             roof.changeColor("green");
             sun.changeColor("yellow");
         }

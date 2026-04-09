@@ -1,7 +1,7 @@
 package rocks.zipcode.dreamhouse;
 
-import java.awt.*;
-
+import java.awt.Paint;
+import java.awt.Polygon;
 /**
  * A triangle that can be manipulated and that draws itself on a canvas.
  * 
@@ -17,6 +17,7 @@ public class Triangle
     private int yPosition;
     private String color;
     private boolean isVisible;
+    private Paint paint;
 
     /**
      * Create a new triangle at default position with default color.
@@ -170,6 +171,11 @@ public class Triangle
         draw();
     }
 
+       public void changePaint(Paint newPaint)
+    {
+    paint = newPaint;
+    draw();
+    }
     /*
      * Draw the triangle with current specifications on screen.
      */
@@ -179,7 +185,11 @@ public class Triangle
             Canvas canvas = Canvas.getCanvas();
             int[] xpoints = { xPosition, xPosition + (width/2), xPosition - (width/2) };
             int[] ypoints = { yPosition, yPosition + height, yPosition + height };
+            if(paint != null) {
+            canvas.draw(this, paint, new Polygon(xpoints, ypoints, 3));
+            } else {
             canvas.draw(this, color, new Polygon(xpoints, ypoints, 3));
+        }
             canvas.wait(10);
         }
     }

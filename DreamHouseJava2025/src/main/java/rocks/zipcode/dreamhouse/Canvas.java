@@ -29,8 +29,7 @@ public class Canvas
     public static Canvas getCanvas()
     {
         if(canvasSingleton == null) {
-            canvasSingleton = new Canvas("BlueJ Shapes Demo", 1920, 1080, 
-                    new Color(173, 216, 230));
+            canvasSingleton = new Canvas("BlueJ Shapes Demo", 1920, 1080, Color.white);
         }
         canvasSingleton.setVisible(true);
         return canvasSingleton;
@@ -82,9 +81,20 @@ public class Canvas
             Dimension size = canvas.getSize();
             canvasImage = canvas.createImage(size.width, size.height);
             graphic = (Graphics2D)canvasImage.getGraphics();
-            graphic.setColor(backgroundColour);
+           LinearGradientPaint sky = new LinearGradientPaint(
+    0, 0,
+    0, size.height,
+    new float[] {0.0f, 0.4f, 0.7f, 1.0f},
+    new Color[] {
+        new Color(255, 120, 80),   // warm orange
+        new Color(255, 200, 120),  // golden glow
+        new Color(100, 149, 237),  // sky blue
+        new Color(25, 25, 112)     // deep ocean blue
+    }
+);
+
+            graphic.setPaint(sky);
             graphic.fillRect(0, 0, size.width, size.height);
-            graphic.setColor(Color.black);
         }
         frame.setVisible(visible);
     }
@@ -106,6 +116,13 @@ public class Canvas
         redraw();
     }
  
+    public void draw(Object referenceObject, Paint paint, Shape shape)
+    {
+        objects.remove(referenceObject);   // just in case it was already there
+        objects.add(referenceObject);      // add at the end
+        shapes.put(referenceObject, new ShapeDescription(shape, paint));
+        redraw();
+    }
     /**
      * Erase a given shape's from the screen.
      * @param  referenceObject  the shape object to be erased 
@@ -197,13 +214,24 @@ public class Canvas
      * Erase the whole canvas. (Does not repaint.)
      */
     private void erase()
-    {
-        Color original = graphic.getColor();
-        graphic.setColor(backgroundColour);
-        Dimension size = canvas.getSize();
-        graphic.fill(new Rectangle(0, 0, size.width, size.height));
-        graphic.setColor(original);
-    }
+{
+    Dimension size = canvas.getSize();
+
+    LinearGradientPaint sky = new LinearGradientPaint(
+        0, 0,
+        0, size.height,
+        new float[] {0.0f, 0.3f, 0.4f, 1.0f},
+    new Color[] {
+        new Color(255, 120, 80),   // warm orange
+        new Color(255, 200, 120),  // golden glow
+        new Color(100, 149, 237),  // sky blue
+        new Color(25, 25, 112)     // deep ocean blue
+        }
+    );
+
+    graphic.setPaint(sky);
+    graphic.fill(new Rectangle(0, 0, size.width, size.height));
+}
 
 
     /************************************************************************
@@ -228,16 +256,30 @@ public class Canvas
     {
         private Shape shape;
         private String colorString;
+        private Paint paint;
 
         public ShapeDescription(Shape shape, String color)
         {
             this.shape = shape;
             colorString = color;
+            this.paint = null;
+        }
+        public ShapeDescription(Shape shape, Paint paint) 
+        { 
+            this.shape = shape; 
+            this.paint = paint; 
+            this.colorString = null; 
         }
 
         public void draw(Graphics2D graphic)
         {
-            setForegroundColor(colorString);
+            Paint originalPaint = graphic.getPaint();
+             if (paint != null) {
+                graphic.setPaint(paint);
+            }
+             else if (colorString != null) {
+                 setForegroundColor(colorString);
+                }
             graphic.fill(shape);
         }
     }
